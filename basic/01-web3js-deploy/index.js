@@ -34,8 +34,8 @@ const contractFile = compiledCode.contracts['Incrementer.sol']['Incrementer'];
 const bytecode = contractFile.evm.bytecode.object;
 const abi = contractFile.abi;
 
-// Create web3 with sepolia provider，you can change sepolia to other testnet
-const web3 = new Web3('https://sepolia.infura.io/v3/' + process.env.INFURA_ID);
+// Create web3 with sepolia provider using Chainlist recommended RPC (drpc.org)
+const web3 = new Web3('https://sepolia.drpc.org');
 
 // Create account from privatekey
 const accounts = web3.eth.accounts.wallet.add(privatekey);
@@ -47,9 +47,6 @@ const accounts = web3.eth.accounts.wallet.add(privatekey);
 const Deploy = async () => {
   try {
     // 添加部署前的检查
-    if (!process.env.INFURA_ID) {
-      throw new Error('Missing INFURA_ID environment variable');
-    }
     if (!process.env.PRIVATE_KEY) {
       throw new Error('Missing PRIVATE_KEY environment variable');
     }
@@ -71,7 +68,8 @@ const Deploy = async () => {
     
     // 添加更详细的日志
     console.log('Contract deployment started...');
-    console.log('Network:', await web3.eth.net.getNetworkType());
+    console.log('Network: Sepolia (using Chainlist recommended RPC)');
+    console.log('RPC URL: https://sepolia.drpc.org');
     console.log('Account:', accounts[0].address);
     
     const tx = await deployTx.send({
