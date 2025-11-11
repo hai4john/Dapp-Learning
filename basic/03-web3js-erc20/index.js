@@ -44,7 +44,7 @@ const main = async () => {
 
     // 5. Create WebSocket connection for event listening
     const web3Socket = new Web3(
-      `wss://sepolia.infura.io/ws/v3/${process.env.INFURA_ID}`
+      'wss://sepolia.gateway.tenderly.co'
     );
     const socketContract = new web3Socket.eth.Contract(abi, contract.options.address);
 

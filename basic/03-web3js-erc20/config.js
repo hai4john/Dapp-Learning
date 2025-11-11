@@ -1,7 +1,8 @@
 // Network Configurations
 const networks = {
     development: {
-        provider: `https://sepolia.infura.io/v3/${process.env.INFURA_ID}`,
+        // provider: `https://sepolia.infura.io/v3/${process.env.INFURA_ID}`,
+        provider: 'https://sepolia.drpc.org',
         networkId: 11155111, // Sepolia network ID
         confirmations: 2,
         timeoutBlocks: 200
